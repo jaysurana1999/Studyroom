@@ -13,6 +13,7 @@ import {
 import Header from './src/Header';
 import HistoryScreen from './src/HistoryScreen';
 import CurrentScreen from './src/CurrentScreen';
+import FormScreen from './src/FormScreen';
 import {NavigationContainer} from '@react-navigation/native';
 // import axios from 'axios';
 
@@ -30,9 +31,10 @@ export default function App() {
   //const [errorMessage, setErrorMessage] = useState('');
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator style={{marginTop: 10}}>
         <Tab.Screen name="Current" component={CurrentScreen} />
         <Tab.Screen name="History" component={HistoryScreen} />
+        <Tab.Screen name="Form" component={FormScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

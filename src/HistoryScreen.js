@@ -1,45 +1,54 @@
 import React from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
-import {connect} from 'react-redux';
-import {ListItem, Icon} from 'react-native-elements';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Header from './Header';
+import HeaderHistory from './HeaderHistory';
 
-//import {addRnm} from './actions/rnm'
+const Item = ({title}) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
 
 const HistoryScreen = () => {
   const dispatch = useDispatch();
   const rnms = useSelector(state => state.rnmReducer.rnmList);
-  console.log(rnms);
-  const renderItem = ({item}) => (
-    <Text>{item.name.name}</Text>
-    // <ListItem
-    //   title={item.name.name}
-    //   bottomDivider
-    //   rightIcon={<Icon name="rowing" />}
-    //   // rightIcon={<Icon name="delete" size={16} />}
-    // />
-  );
+
+  const renderItem = ({item}) => <Item title={item.name.name} />;
 
   return (
-    <FlatList
-      style={styles.listContainer}
-      data={rnms}
-      keyExtractor={item => {
-        item.key;
-      }}
-      renderItem={renderItem}
-    />
+    <View style={{flex: 1}}>
+      <HeaderHistory />
+      <FlatList
+        style={styles.listContainer}
+        data={rnms}
+        keyExtractor={item => {
+          item.id;
+        }}
+        renderItem={renderItem}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   listContainer: {
-    backgroundColor: '#212121',
+    backgroundColor: 'white',
     padding: 16,
   },
-  listText: {
-    fontSize: 30,
+
+  item: {
+    marginVertical: 10,
+    marginHorizontal: 10,
+    height: 40,
+    marginBottom: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
+  },
+  title: {
+    fontSize: 16,
   },
 });
 

@@ -32,37 +32,17 @@ const CurrentScreen = () => {
   const [randm, setRandm] = useState([]);
 
   const onPress = rnm => {
-    //WRONGGGG
-    // console.log('pressed');
-    //setRnm('Jay pressed');
     setRnm(rnm);
     submitRnm(rnm);
-    //setRnm('Jay pressed');
   };
   const renderItem = ({item}) => (
-    <TouchableOpacity
-      onPress={() => onPress(item)}
-      style={{
-        //flex: 1,
-        height: 80,
-        marginBottom: 10,
-
-        //backgroundColor: 'pink',
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: 'grey',
-      }}>
+    <TouchableOpacity onPress={() => onPress(item)} style={styles.itemView}>
       <View style={{flexDirection: 'row'}}>
-        <View
-          style={{
-            marginLeft: 5,
-            marginBottom: 5,
-            marginRight: 15,
-          }}>
+        <View style={styles.imageViewStyle}>
           <Image style={styles.tinyLogo} source={{uri: item.image}} />
         </View>
         <View>
-          <Text style={styles.titleStyle}>Name : {item.name}</Text>
+          <Text style={styles.titleStyle}>Name: {item.name}</Text>
           <Text>Species: {item.species}</Text>
           <Text>Gender: {item.gender}</Text>
         </View>
@@ -75,11 +55,24 @@ const CurrentScreen = () => {
       <View style={{marginTop: 10}}>
         <FlatList renderItem={renderItem} data={randm} />
       </View>
+      <View style={{height: 50}}></View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  itemView: {
+    height: 80,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
+  },
+  imageViewStyle: {
+    marginLeft: 5,
+    marginBottom: 5,
+    marginRight: 15,
+  },
   tinyLogo: {
     width: 75,
     height: 75,
@@ -88,7 +81,6 @@ const styles = StyleSheet.create({
   titleStyle: {
     color: '#24282E',
     fontSize: 16,
-    //width: '70%',
     marginLeft: '0.5%',
     marginTop: '0.5%',
     fontWeight: 'bold',
